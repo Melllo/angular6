@@ -1,0 +1,24 @@
+<div class="group">
+  <h3 [ngClass]="{ old: isOld() }">Група {{ group.number }}</h3>
+
+  <div *ngIf="showInfo; then btnHide; else btnShow"></div>
+  <ng-template #btnHide>
+    <button (click)="showInfo = false">Згорнути</button>
+  </ng-template>
+  <ng-template #btnShow>
+    <button (click)="showInfo = true">Детальніше</button>
+  </ng-template>
+
+  <div class="info" *ngIf="showInfo">
+    <div class="edit-number">
+      <input
+        type="text"
+        [(ngModel)]="group.number"
+        (ngModelChange)="onChange()"
+      />
+    </div>
+    <p class="faculty">{{ group.faculty }}</p>
+    <p class="specialty">спеціальність: {{ group.specialty }}</p>
+    <p>Кількість студентів: {{ group.studentsQuantity }}</p>
+  </div>
+</div>
